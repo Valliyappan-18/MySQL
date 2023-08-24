@@ -1,0 +1,46 @@
+-- Store Procedure In MySQL
+
+create table ipl_points(
+team_name varchar(10) not null,
+played_match int,
+won int,
+loss int,
+nrr decimal(4,2)
+);
+
+select * from ipl_points;
+
+insert into ipl_points values ('csk', 0, 0, 0, 0), ('mi', 0, 0, 0, 0),
+('rcb', 0 ,0, 0,0), ('kkr', 0, 0, 0, 0), ('rr', 0, 0, 0, 0),
+('srh', 0, 0, 0, 0), ('pk', 0, 0, 0, 0), ('dc', 0, 0, 0,0);
+
+
+delimiter &&
+create procedure sp_ipl(IN t_name varchar(10),out t_name1 varchar(20))
+begin
+update ipl_points set  played_match= played_match +1,
+won=won+1,
+nrr=nrr+0.1 where team_name = t_name;
+select * from ipl_points;
+end
+ &&
+ 
+call sp_ipl('rcb',@t_name1);
+
+set sql_safe_updates=0;
+
+delimiter $$
+create procedure sp_ipl1(in t_name varchar(10),out t_name2 varchar(20))
+begin
+update ipl_points set played_match= played_match +1 , loss = loss +1 where team_name = t_name;
+select * from ipl_points;
+end $$
+
+call sp_ipl1("csk",@t_name2);
+
+set sql_safe_updates = 0;
+
+
+
+ 
+
