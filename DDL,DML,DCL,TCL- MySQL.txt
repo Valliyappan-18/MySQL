@@ -1,0 +1,134 @@
+											-- SQL - Structured Query Language 
+
+create database test;
+
+ -- create database  db_name
+
+use test; -- to use the database with the name 
+
+show databases;  -- to view all the database
+
+									-- DDL - Data Definition Language starts here 
+
+                                                      -- Create  method 
+
+create table test1(
+	id  int primary key ,
+	Name varchar(40),
+    location varchar (20),
+	role varchar(40),
+	salary decimal(7,2)
+);
+
+show tables;
+
+desc test1;   -- describe table_name
+
+                                                  -- Alter method
+
+alter table test1 add email varchar(40);  -- add column into the table
+
+alter table test1 drop email ;  -- drop column in the table
+
+alter table test1 modify column  email varchar(70);  -- modify column in the table 
+
+alter table test1 rename column email to email_id;
+
+                                                     -- Drop method
+
+drop table test1;
+
+drop database test;
+
+                                                   -- Truncate method
+
+truncate tast1;  -- to delete everything in a table 
+
+											-- DML - Data Manipulating Language 
+
+                                                     -- Insert method
+
+-- values for all columns 
+
+insert into test1 values(1,"Valliyappan","Madurai","Frontend Developer",24000,"valliyappan02112000@gmail.com");
+
+-- values for specified columns
+
+insert into test1 (id,Name,Location,salary) values (2,"Virat Kohli","Delhi",24000),
+(3,"Ab De Villiars","SA",24000),
+(4,"Chris Gayle","WI",18000),
+(5,"Faf","SA",20000),
+(6,"Maxi","AUS",19000);
+
+                                                       -- select method
+
+select * from test1; -- * symbol denotes for all column will be retrive
+
+select id,name,location,salary from test1;  -- specified column should be retrive 
+
+													-- update method
+
+-- hefore update and delete you have disable the feature with below comment;
+
+set sql_safe_updates=0;  -- turn off (set sql_safe_updates=1);
+
+update test1  set role="frontend developer";  -- if i give like this entire column will be changed 
+
+-- in future we will see  how to update particular column with the help of where clause;
+
+                                                  -- delete method
+
+delete from test1; -- this method should delete everything in a table ;
+
+-- hefore update and delete you have disable the feature with below comment;
+
+-- set sql_safe_updates=0;
+
+-- In future we will see how to delete particular column  with the help of where clausel
+
+                                                     -- Where Clause 
+
+delete from test1 where id=1; -- where used for to write a condition  
+
+                                                   -- Logical Opertors 
+
+-- And Operator  - this operator used to two condition should be true 
+
+select * from test1 where id = 2 and name="Virat Kohli";
+
+-- 0R Opertor - either one condition should be true otherwise it will not work
+
+select * from test1 where salary > 20000 or id = 2 ;
+
+-- NOT Operator - it will be opposite of what you need 
+
+select * from test1 where not salary >= 20000;
+
+                                                  -- ORDET BY Clause 
+
+-- default of  order by clause was ASC - ascending order , or you can use DESC - descending order 
+
+select * from test1 order by 2;  -- this 2 denotes 2 column of the table - from low to high - ASC(ascending)
+
+select * from test1 order by salary;  -- or use by column name to declare ascending order;
+
+                                  -- DISTINCT Clause - used to remove duplicate values
+
+-- you can use like this statement below 
+
+select distinct name,location,salary from test1;   -- in this table no duplicate values so it doesn't work
+
+													-- DCL - Data Control Language 
+
+															-- Grant and Revoke 
+
+												-- TCL - Transaction Control Language
+
+														-- savepoint , commit , rollback
+
+-- commit method - it's used for save all changes
+
+-- savepoint is used save temporatory.
+
+-- rollback is used undo changes ( back to previous commit).
+
